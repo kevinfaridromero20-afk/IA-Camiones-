@@ -1,1 +1,145 @@
 # IA-Camiones-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA de Camiones</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    margin:0;
+}
+
+header{
+    background:#0057b8;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+#chat{
+    width:90%;
+    max-width:800px;
+    height:500px;
+    margin:20px auto;
+    background:white;
+    border-radius:10px;
+    padding:15px;
+    overflow-y:auto;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+.mensaje{
+    margin:10px 0;
+    padding:10px;
+    border-radius:10px;
+}
+
+.usuario{
+    background:#dbeafe;
+}
+
+.ia{
+    background:#dcfce7;
+}
+
+#contenedor{
+    width:90%;
+    max-width:800px;
+    margin:auto;
+    display:flex;
+    gap:10px;
+}
+
+input{
+    flex:1;
+    padding:12px;
+}
+
+button{
+    padding:12px 20px;
+    background:#0057b8;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🚛 IA de Camiones</h1>
+<p>Solo responde preguntas básicas sobre camiones</p>
+</header>
+
+<div id="chat"></div>
+
+<div id="contenedor">
+<input type="text" id="pregunta" placeholder="Escribe una pregunta">
+<button onclick="responder()">Enviar</button>
+</div>
+
+<script>
+
+function agregarMensaje(texto,tipo){
+    let div=document.createElement("div");
+    div.className="mensaje "+tipo;
+    div.innerHTML=texto;
+    document.getElementById("chat").appendChild(div);
+    document.getElementById("chat").scrollTop=
+    document.getElementById("chat").scrollHeight;
+}
+
+function responder(){
+
+let pregunta=document.getElementById("pregunta").value;
+
+if(!pregunta) return;
+
+agregarMensaje("👤 "+pregunta,"usuario");
+
+let p=pregunta.toLowerCase();
+
+let respuesta="Solo puedo responder preguntas sobre camiones.";
+
+if(p.includes("freightliner"))
+respuesta="Freightliner es una marca estadounidense de camiones pesados.";
+
+else if(p.includes("kenworth"))
+respuesta="Kenworth fabrica tractocamiones y camiones de carga.";
+
+else if(p.includes("volvo"))
+respuesta="Volvo Trucks es conocida por sus camiones de larga distancia.";
+
+else if(p.includes("cascadia"))
+respuesta="El Freightliner Cascadia es uno de los tractocamiones más populares.";
+
+else if(p.includes("motor"))
+respuesta="El motor es el componente que genera la potencia para mover el camión.";
+
+else if(p.includes("llantas"))
+respuesta="Las llantas soportan la carga y permiten la tracción.";
+
+else if(p.includes("transmision"))
+respuesta="La transmisión envía la potencia del motor a las ruedas.";
+
+else if(p.includes("frenos"))
+respuesta="Los frenos permiten reducir la velocidad o detener el camión.";
+
+else if(p.includes("marcas"))
+respuesta="Freightliner, Kenworth, Peterbilt, Volvo e International.";
+
+setTimeout(()=>{
+agregarMensaje("🤖 "+respuesta,"ia");
+},500);
+
+document.getElementById("pregunta").value="";
+}
+
+</script>
+
+</body>
+</html>
